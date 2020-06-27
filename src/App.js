@@ -17,6 +17,9 @@ class App extends Component {
   }
 
   addNote() {
+    let counter = this.state.amountLeft + 1; 
+    this.setState({ amountLeft: counter });
+
     let notesArr = this.state.notes;
     notesArr.push(this.state.noteText);
     this.setState({ noteText: "" });
@@ -24,14 +27,11 @@ class App extends Component {
     if(this.state.noteText === "") {return false}
   }
 
-  addCounter() {
-    let counter = this.state.amountLeft;
-    counter +=1;
-    // this.setState({counter ++ 1})
-  }
-
   handleKeyPress = (event) => {
     if (event.key ==="Enter"){
+      let counter = this.state.amountLeft + 1; 
+      this.setState({ amountLeft: counter });
+
       console.log('enter pressed');
       let notesArr = this.state.notes;
       notesArr.push(this.state.noteText);
@@ -44,7 +44,9 @@ class App extends Component {
   deleteNote(index) {
     let notesArr = this.state.notes;
     notesArr.splice(index, 1);
-    this.setState({notes : notesArr })
+    this.setState({notes : notesArr });
+    let negCounter = this.state.amountLeft - 1; 
+    this.setState({ amountLeft: negCounter });
   } 
 
 render() {
@@ -61,8 +63,8 @@ let notes = this.state.notes.map((val, key) =>{
       <div className = "header">
         <h1>React TODO Application</h1>
       </div>
-      <div className = "remaining">
-        <h3 onClick={this.addCounter.bind(this)}>{this.state.amountLeft} tasks remaining</h3>
+      <div className="remaining">
+        <h3>{this.state.amountLeft} tasks remaining</h3>
       </div>      
       {notes}
 
