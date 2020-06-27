@@ -6,6 +6,7 @@ class Note extends Component {
 	  return (
 	  	<div className="note" onClick={this.props.deleteMethod}>
 	  		{this.props.text}
+	  		<input type="checkbox">
 	  	</div>
 	  );
 	}
